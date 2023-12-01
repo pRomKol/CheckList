@@ -49,6 +49,12 @@ function App() {
         {id: todolistId1, title: 'What to learn', filter: 'active'},
         {id: todolistId2, title: 'What to do', filter: 'completed'}
     ])
+    let removeTodoList = (todoListId: string) => {
+        let filteredTodoList = todoLists.filter(tl => tl.id !== todoListId)
+        setTodoList(filteredTodoList)
+        delete tasksObj[todoListId]
+        setTasksObj({...tasksObj})
+    }
     let [tasksObj, setTasksObj] = useState({
         [todolistId1]: [
             {id: v1(), title: 'Html CSS', isDone: true},
@@ -75,6 +81,7 @@ function App() {
                         tasksForTodolist = tasksForTodolist.filter(tasks => !tasks.isDone);
                     }
                     return <TodoList
+                        removeTodoList={removeTodoList}
                         key={tl.id}
                         id={tl.id}
                         changeFilter={changeFilter}
