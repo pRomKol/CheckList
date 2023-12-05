@@ -13,7 +13,7 @@ const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     setError(null)
         if (e.ctrlKey && e.charCode) {
         if(props.newTaskTitle.trim() !== ''){
-            props.addTusk(props.newTaskTitle.trim());
+            props.addTusk(props.newTaskTitle.trim(), props.id);
             props.setNewTaskTitle('')
         }
     else {
