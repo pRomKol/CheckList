@@ -43,11 +43,13 @@ function App() {
 
     let todolistId1 = v1()
     let todolistId2 = v1()
+    let todolistId3 = v1()
 
 
     let [todoLists, setTodoList] = useState<Array<TodolistPropsType>>([
-        {id: todolistId1, title: 'What to learn', filter: 'active'},
-        {id: todolistId2, title: 'What to do', filter: 'completed'}
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to do', filter: 'all'},
+        {id: todolistId3, title: 'What to eat', filter: 'all'},
     ])
     let removeTodoList = (todoListId: string) => {
         let filteredTodoList = todoLists.filter(tl => tl.id !== todoListId)
@@ -64,6 +66,12 @@ function App() {
         ],
         [todolistId2]: [
             {id: v1(), title: 'Book', isDone: true},
+            {id: v1(), title: 'Milk', isDone: true},
+            {id: v1(), title: 'Souse', isDone: false},
+            {id: v1(), title: 'Beer', isDone: false},
+        ],
+        [todolistId3]: [
+            {id: v1(), title: 'Meat', isDone: true},
             {id: v1(), title: 'Milk', isDone: true},
             {id: v1(), title: 'Souse', isDone: false},
             {id: v1(), title: 'Beer', isDone: false},
