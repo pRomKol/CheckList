@@ -1,20 +1,22 @@
 import {ChangeEvent, KeyboardEvent, useState} from "react";
 
+type FullInputPropsType = {
+    addItem: (title: string) => void
+}
 
 
-
-export const FullInput = (props: any) => {
+export const FullInput = (props: FullInputPropsType) => {
     const [error, setError] = useState< string | null >(null)
-
+    const [newTaskTitle, setNewTaskTitle] = useState('')
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    props.setNewTaskTitle(e.currentTarget.value);
+    setNewTaskTitle(e.currentTarget.value);
 }
 const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     setError(null)
         if (e.ctrlKey && e.charCode) {
-        if(props.newTaskTitle.trim() !== ''){
-            props.addTusk(props.newTaskTitle.trim(), props.id);
-            props.setNewTaskTitle('')
+        if(newTaskTitle.trim() !== ''){
+            props.addItem(newTaskTitle.trim());
+            setNewTaskTitle('')
         }
     else {
         setError('Title is required')
@@ -22,9 +24,9 @@ const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     }
 }
 const addTask = () => {
-    if (props.newTaskTitle.trim() !== ''){
-        props.addTusk(props.newTaskTitle.trim(), props.id);
-        props.setNewTaskTitle('')
+    if (newTaskTitle.trim() !== ''){
+        props.addItem(newTaskTitle.trim(), );
+        setNewTaskTitle('')
     }else {
         setError('Title is required')
     }
@@ -32,7 +34,7 @@ const addTask = () => {
 }
     return (
         <div>
-            <input value={props.newTaskTitle}
+            <input value={newTaskTitle}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
                    className={error ? 'error' : ''}/>
