@@ -1,23 +1,23 @@
-.App {
-  padding: 30px;
-  display: flex;
-}
+/*.App {*/
+/*  padding: 30px;*/
+/*  display: flex;*/
+/*}*/
 
-.App > div {
-  margin-right: 50px;
-}
-.ping {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid;
-}
-.error{
-  border: red 1px solid;
-}
-.error-message {
-  color: red;
-}
-.active-filter {
-  background-color: aquamarine;
-}
+/*.App > div {*/
+/*  margin-right: 50px;*/
+/*}*/
+/*.ping {*/
+/*  width: 50px;*/
+/*  height: 50px;*/
+/*  border-radius: 50%;*/
+/*  border: 1px solid;*/
+/*}*/
+/*.error{*/
+/*  border: red 1px solid;*/
+/*}*/
+/*.error-message {*/
+/*  color: red;*/
+/*}*/
+/*.active-filter {*/
+/*  background-color: aquamarine;*/
+/*}*/
