@@ -47,7 +47,7 @@ export const FullInput = (props: FullInputPropsType) => {
                 error={!!error}
                 size="small"
                 id="outlined-basic"
-                label={ error? error : 'Add'}
+                label={error ? error : 'Add'}
                 variant="outlined"
                 value={newTaskTitle}
                 onChange={onChangeHandler}
