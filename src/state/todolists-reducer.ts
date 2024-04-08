@@ -1,8 +1,9 @@
 import {v1} from 'uuid';
-import {TodolistType} from '../api/todolists-api'
+import {todolistsAPI, TodolistType} from '../api/todolists-api'
+import {useEffect} from "react";
 
 export type SetTodolstsActionType = {
-    type: 'SET_TODOLISTS'
+    type: 'SET-TODO-LISTS'
     todolists: TodolistType[]
 }
 export type RemoveTodolistActionType = {
@@ -70,12 +71,16 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
             }
             return [...state]
         }
-        case 'SET_TODOLISTS': {
-            return [...state]
+        case 'SET-TODO-LISTS': {
+            return action.todolists.map(tl => ({...tl, filter: 'all'}))
         }
         default:
             return state;
     }
+}
+export const getTodo = (dispatch: any, getState: any, ExtraThunkArg: any) => {
+ todolistsAPI.getTodolists()
+     .then((res)=>dispatch(setTodolistsAC(res.data)))
 }
 
 export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
@@ -92,5 +97,5 @@ export const changeTodolistFilterAC = (id: string, filter: FilterValuesType): Ch
 }
 
 export const setTodolistsAC = (todolists: TodolistType[]) => {
-    return {type: 'SET_TODOLISTS', todolists}
+    return {type: 'SET-TODO-LISTS', todolists}
 }
