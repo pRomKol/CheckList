@@ -76,6 +76,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
         const state = getState()
         const task = state.tasks[todolistId].find(t => t.id === taskId)
         if (!task) {
+            //throw new Error("task not found in the state");
             console.warn('task not found in the state')
             return
         }
