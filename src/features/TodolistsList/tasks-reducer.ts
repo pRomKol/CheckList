@@ -57,7 +57,6 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) => ({
 
 // thunks
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType | SetAppStatusActionType>) => {
-    debugger
     dispatch(setAppStatusAC('loading'))
     todolistsAPI.getTasks(todolistId)
         .then((res) => {
