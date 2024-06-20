@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react"
 import { useSelector } from "react-redux"
-import { AppRootStateType } from "../../app/store"
+import { AppRootStateType } from "app/store"
 import {
   addTodolistTC,
   changeTodolistTitleTC,
@@ -10,13 +10,14 @@ import {
   todoActions,
   TodolistDomainType,
 } from "./todolists-reducer"
-import { addTaskTC, removeTaskTC, TasksStateType, updateTaskTC } from "./tasks-reducer"
-import { TaskStatuses } from "../../api/todolists-api"
+import { removeTaskTC, TasksStateType, tasksThunks } from "./tasks-reducer"
+import { TaskStatuses } from "api/todolists-api"
 import { Grid, Paper } from "@mui/material"
-import { AddItemForm } from "../../components/AddItemForm/AddItemForm"
+import { AddItemForm } from "components/AddItemForm/AddItemForm"
 import { Todolist } from "./Todolist/Todolist"
 import { Navigate } from "react-router-dom"
-import { useAppDispatch } from "../../hooks/useAppDispatch"
+import { useAppDispatch } from "hooks/useAppDispatch"
+import * as domain from "domain"
 
 type PropsType = {
   demo?: boolean
@@ -43,18 +44,15 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
   }, [])
 
   const addTask = useCallback(function (title: string, todolistId: string) {
-    const thunk = addTaskTC(title, todolistId)
-    dispatch(thunk)
+    dispatch(tasksThunks.addTask({ title, todolistId }))
   }, [])
 
-  const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
-    const thunk = updateTaskTC(id, { status }, todolistId)
-    dispatch(thunk)
+  const changeStatus = useCallback(function (taskId: string, status: TaskStatuses, todolistId: string) {
+    dispatch(tasksThunks.updateTask({ taskId, domainModel: { status }, todolistId }))
   }, [])
 
-  const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
-    const thunk = updateTaskTC(id, { title: newTitle }, todolistId)
-    dispatch(thunk)
+  const changeTaskTitle = useCallback(function (taskId: string, newTitle: string, todolistId: string) {
+    dispatch(tasksThunks.updateTask({ taskId, domainModel: { title: newTitle }, todolistId }))
   }, [])
 
   const changeFilter = useCallback(function (filter: FilterValuesType, id: string) {
