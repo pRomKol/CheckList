@@ -5,7 +5,12 @@ import { appActions } from "app/app.reducer";
 import { BaseResponseType } from "common/types";
 
 export const thunkTryCatch = async <T>(
-  thunkAPI: BaseThunkAPI<AppRootStateType, unknown, AppDispatch, null | BaseResponseType>,
+  thunkAPI: BaseThunkAPI<
+    AppRootStateType,
+    unknown,
+    AppDispatch,
+    null | BaseResponseType
+  >,
   logic: () => Promise<T>,
 ): Promise<T | ReturnType<typeof thunkAPI.rejectWithValue>> => {
   const { dispatch, rejectWithValue } = thunkAPI;
